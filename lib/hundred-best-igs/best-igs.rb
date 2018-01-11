@@ -1,5 +1,3 @@
-require 'pry'
-
 class HundredBestIgs::BestIgs
 
   attr_accessor :name, :summary, :posts, :followers, :following, :follow_url
@@ -34,10 +32,23 @@ class HundredBestIgs::BestIgs
 
   def self.scrape_igs
     igs = []
-
-    
-
+    igs << self.scrape_rolling_stones
     igs
+  end
+
+  def self.scrape_rolling_stones
+    doc = Nokogiri::HTML(open("https://www.rollingstone.com/culture/features/the-100-best-instagram-accounts#"))
+
+    #add each method to go through and scrape info from all 100 accounts
+    account = self.new
+    account.name = doc.css("h1.account-name").last.text
+    account.summary = doc.css(".account-body p").last.text
+    account.posts = doc.css(".related.posts p").last.text
+    account.followers = doc.css(".related.followers p").last.text
+    account.following = doc.css(".related.following p").last.text
+    account.follow_url = doc.css(".follow-button-container a").last.attr("href")
+
+    account
   end
 
   def self.find_by_name(name)
