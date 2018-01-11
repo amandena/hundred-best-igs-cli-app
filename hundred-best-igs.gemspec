@@ -1,16 +1,16 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "hundred/best/igs/version"
+require "hundred-best-igs/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "hundred-best-igs"
-  spec.version       = Hundred::Best::Igs::VERSION
+  spec.version       = HundredBestIgs::VERSION
   spec.authors       = ["'amanda johnson'"]
   spec.email         = ["'manda.panda91@yahoo.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = "test" #%q{TOD: Write a short summary, because RubyGems requires one.} 
+  #spec.description   = %q{TOD: Write a longer description or delete this line.}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 

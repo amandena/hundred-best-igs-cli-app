@@ -9,6 +9,7 @@ class HundredBestIgs::CLI
   def list_accounts
     puts "100 Best Instagram Accounts:"
     #list all 100 ig accounts
+    @best_igs = HundredBestIgs::BestIgs.all.name
   end
 
   def menu
@@ -25,6 +26,8 @@ class HundredBestIgs::CLI
         puts "More info on account #3..."
       when "list"
         list_accounts
+      when "exit"
+        exit
       else
         puts "Not sure what you mean, please type 'list' or 'exit'."
       end
