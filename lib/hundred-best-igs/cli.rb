@@ -9,7 +9,10 @@ class HundredBestIgs::CLI
   def list_accounts
     puts "100 Best Instagram Accounts:"
     #list all 100 ig accounts
-    @best_igs = HundredBestIgs::BestIgs.all.name
+    @best_igs = HundredBestIgs::BestIgs.all
+    @best_igs.each.with_index(1) do |ig, i|
+      puts "#{i}. #{ig.name} - #{ig.posts} posts - #{ig.followers} followers - #{ig.following} following"
+    end
   end
 
   def menu
@@ -17,22 +20,16 @@ class HundredBestIgs::CLI
     while input != "exit"
       puts "Enter the number of the account you'd like more info on, type 'list' to see all acounts again, or type 'exit':"
       input = gets.strip.downcase
-      case input
-      when "1"
-        puts "More info on account #1..."
-      when "2"
-        puts "More info on account #2..."
-      when "3"
-        puts "More info on account #3..."
-      when "list"
+
+      if (input.to_i > 0 && input.to_i < 101)
+        best_ig = @best_igs[input.to_i - 1]
+        puts "#{best_ig.name} - #{best_ig.posts} posts - #{best_ig.followers} followers - #{best_ig.following} following"
+      elsif input == "list"
         list_accounts
-      when "exit"
-        exit
       else
         puts "Not sure what you mean, please type 'list' or 'exit'."
       end
     end
-    #use case statements to loop through the accounts based on input to return the correct info
   end
 
   def goodbye
