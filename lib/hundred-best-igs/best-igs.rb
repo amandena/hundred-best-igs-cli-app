@@ -1,24 +1,23 @@
 class HundredBestIgs::BestIgs
 
-  attr_accessor :name, :summary, :posts, :followers, :following, :follow_url
+  attr_accessor :name, :summary, :posts, :followers, :following, :follow_url, :rank
 
   @@all = []
 
-  def initialize(name = nil, posts = nil, followers = nil, following = nil)
+  def initialize(name = nil, rank = nil, posts = nil, followers = nil, following = nil)
     @name = name
+    @rank = rank
     @posts = posts
     @followers = followers
     @following = following
   end
 
   def self.all
-    #binding.pry
     if @@all.empty?
       @@all = self.scrape
     else
       @@all
     end
-    #scrape rolling stones website and return account info
   end
 
   def self.doc
@@ -31,7 +30,6 @@ class HundredBestIgs::BestIgs
     doc.css(".account").each do |a|
 
       account = self.new
-
       account.name = a.css("h1.account-name").last.text.strip
       account.summary = a.css(".account-body p").last.text.strip
       account.posts = a.css(".related.posts p").last.text.strip
@@ -41,7 +39,8 @@ class HundredBestIgs::BestIgs
 
       accounts.unshift(account)
     end
-      binding.pry
+    accounts
+    #binding.pry
   end
 
   def self.find_by_name(name)
