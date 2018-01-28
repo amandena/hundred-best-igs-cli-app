@@ -7,7 +7,7 @@ class HundredBestIgs::CLI
   end
 
   def list_accounts
-    puts "100 Best Instagram Accounts:"
+    puts "Rolling Stones' 100 Best Instagram Accounts:"
     puts ""
     #list all 100 ig accounts
     HundredBestIgs::BestIgs.new

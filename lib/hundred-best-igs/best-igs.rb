@@ -30,13 +30,14 @@ class HundredBestIgs::BestIgs
     doc.css(".account").each do |a|
 
       account = self.new
+      account.rank = a.css(".closed").last.text.strip
       account.name = a.css("h1.account-name").last.text.strip
       account.summary = a.css(".account-body p").last.text.strip
       account.posts = a.css(".related.posts p").last.text.strip
       account.followers = a.css(".related.followers p").last.text.strip
       account.following = a.css(".related.following p").last.text.strip
       account.follow_url = a.css(".follow-button-container a").attr("href").value
-
+      #binding.pry
       accounts.unshift(account)
     end
     accounts
@@ -44,10 +45,10 @@ class HundredBestIgs::BestIgs
   end
 
   def self.find_by_name(name)
-
+    self.all.detect {|n| n.name = name}
   end
 
-  def self.find_by_number(number)
-
+  def self.find_by_rank(rank)
+    self.all[rank-1]
   end
 end
