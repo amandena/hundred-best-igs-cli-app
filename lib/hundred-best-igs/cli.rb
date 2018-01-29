@@ -10,7 +10,6 @@ class HundredBestIgs::CLI
     puts "Rolling Stones' 100 Best Instagram Accounts:"
     puts ""
     #list all 100 ig accounts
-    HundredBestIgs::BestIgs.new
     @best_igs = HundredBestIgs::BestIgs.all
     #binding.pry
     @best_igs.each.with_index(1) do |ig, i|
@@ -21,18 +20,29 @@ class HundredBestIgs::CLI
   def menu
     input = nil
     while input != "exit"
+
       puts ""
-      puts "Enter the number of the account you'd like more info on:"
+      puts "Enter the name or number of the account you'd like more info on:"
       puts "OR type 'list' to see all acounts again or type 'exit'."
       puts ""
+
       input = gets.strip.downcase
+      best_ig_rank = HundredBestIgs::BestIgs.find_by_rank(input.to_i)
+      best_ig_name = HundredBestIgs::BestIgs.find_by_name(input)
 
       if input.to_i.between?(1, 100)
-        best_ig = @best_igs[input.to_i - 1]
-        #binding.pry unless best_ig
 
-        puts "#{best_ig.name} - #{best_ig.posts} posts - #{best_ig.followers} followers - #{best_ig.following} following"
-        puts "#{best_ig.summary}"
+        puts ""
+        puts "#{best_ig_rank.name} - #{best_ig_rank.posts} posts - #{best_ig_rank.followers} followers - #{best_ig_rank.following} following"
+        puts ""
+        puts "#{best_ig_rank.summary}"
+
+      elsif input == "#{best_ig_name.name}"
+
+        puts "#{best_ig_name.posts} posts - #{best_ig_name.followers} followers - #{best_ig_name.following} following"
+        puts ""
+        puts "#{best_ig_name.summary}"
+
       elsif input == "list"
         list_accounts
       else

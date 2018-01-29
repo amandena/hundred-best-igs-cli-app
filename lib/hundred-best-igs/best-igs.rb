@@ -1,6 +1,6 @@
 class HundredBestIgs::BestIgs
 
-  attr_accessor :name, :summary, :posts, :followers, :following, :follow_url, :rank
+  attr_accessor :name, :rank, :summary, :posts, :followers, :following, :follow_url
 
   @@all = []
 
@@ -44,8 +44,8 @@ class HundredBestIgs::BestIgs
     #binding.pry
   end
 
-  def self.find_by_name(name)
-    self.all.detect {|n| n.name = name}
+  def self.find_by_name(input)
+    self.all.detect {|n| n.name == input}
   end
 
   def self.find_by_rank(rank)
