@@ -9,9 +9,8 @@ class HundredBestIgs::CLI
   def list_accounts
     puts "Rolling Stones' 100 Best Instagram Accounts:"
     puts ""
-    #list all 100 ig accounts
+
     @best_igs = HundredBestIgs::BestIgs.all
-    #binding.pry
     @best_igs.each.with_index(1) do |ig, i|
       puts "#{i}. #{ig.name} - #{ig.posts} posts - #{ig.followers} followers - #{ig.following} following"
     end
@@ -37,14 +36,9 @@ class HundredBestIgs::CLI
         puts ""
         puts "#{best_ig_rank.summary}"
 
-      elsif input == "#{best_ig_name.name}"
-
-        puts "#{best_ig_name.posts} posts - #{best_ig_name.followers} followers - #{best_ig_name.following} following"
-        puts ""
-        puts "#{best_ig_name.summary}"
-
       elsif input == "list"
         list_accounts
+
       else
         puts "Not sure what you mean, please type 'list' or 'exit'."
       end

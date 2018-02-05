@@ -25,7 +25,6 @@ class HundredBestIgs::BestIgs
   end
 
   def self.scrape
-    #add collect method to go through and scrape info from all 100 accounts
     accounts = []
     doc.css(".account").each do |a|
 
@@ -37,15 +36,10 @@ class HundredBestIgs::BestIgs
       account.followers = a.css(".related.followers p").last.text.strip
       account.following = a.css(".related.following p").last.text.strip
       account.follow_url = a.css(".follow-button-container a").attr("href").value
-      #binding.pry
+
       accounts.unshift(account)
     end
     accounts
-    #binding.pry
-  end
-
-  def self.find_by_name(input)
-    self.all.detect {|n| n.name == input}
   end
 
   def self.find_by_rank(rank)
