@@ -27,7 +27,6 @@ class HundredBestIgs::CLI
 
       input = gets.strip.downcase
       best_ig_rank = HundredBestIgs::BestIgs.find_by_rank(input.to_i)
-      best_ig_name = HundredBestIgs::BestIgs.find_by_name(input)
 
       if input.to_i.between?(1, 100)
 
