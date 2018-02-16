@@ -21,7 +21,7 @@ class HundredBestIgs::CLI
     while input != "exit"
 
       puts ""
-      puts "Enter the name or number of the account you'd like more info on:"
+      puts "Enter the number of the account you'd like more info on:"
       puts "OR type 'list' to see all acounts again or type 'exit'."
       puts ""
 
