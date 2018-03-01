@@ -14,9 +14,9 @@ class HundredBestIgs::BestIgs
 
   def self.all
     if @@all.empty?
-      @@all = self.scrape
+      @@all = self.scrape.reverse!
     else
-      @@all
+      @@all.reverse!
     end
   end
 
@@ -25,8 +25,7 @@ class HundredBestIgs::BestIgs
   end
 
   def self.scrape
-    accounts = []
-    doc.css(".account").each do |a|
+    doc.css(".account").collect do |a|
 
       account = self.new
       account.rank = a.css(".closed").last.text.strip
@@ -37,9 +36,8 @@ class HundredBestIgs::BestIgs
       account.following = a.css(".related.following p").last.text.strip
       account.follow_url = a.css(".follow-button-container a").attr("href").value
 
-      accounts.unshift(account)
+      account
     end
-    accounts
   end
 
   def self.find_by_rank(rank)
